@@ -8,36 +8,36 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dongle&display=swap" rel="stylesheet">
 
-<title>EoS 문서 뷰어 & 다운로드</title>
+<title>브로드컴 문서 뷰어 & 다운로드</title>
 
 <style>
   a {
-      text-decoration: none !important;
-    }
+    text-decoration: none !important;
+  }
   body {
-        font-family: "Segoe UI", Arial, sans-serif;
-        background: #f3f4f6;
-        margin: 0;
-        padding: 6px 40px 10px 40px;
-        color:#333;
-      }
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    padding: 6px 40px 10px 40px;
+    color:#333;
+  }
   .dongle-regular {
     font-family: "Dongle", sans-serif;
     font-weight: 400;
     font-style: normal;
   }
 
-   /* 🔹 상단 네비게이션 버튼 */
+  /* 🔹 상단 네비게이션 버튼 */
   .top-nav {
     display: flex;
     justify-content: space-between;  /* 좌측-우측 배치 */
     gap: 4px;
     margin-bottom: -10px;
   }
-	.nav-right {
-      display: flex;
-      gap: 4px;
-    }
+  .nav-right {
+    display: flex;
+    gap: 4px;
+  }
 
   .nav-btn {
     background: #1e3a5f; color: white; border: none; border-radius: 8px;
@@ -64,7 +64,7 @@
     background: #f3f4f6;
   }
   h1 {
-  	font-size: 1.5em;
+    font-size: 1.5em;
     background: #1e3a5f;
     color: white;
     padding: 12px 18px;
@@ -78,14 +78,14 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background: #f3f4f6;  /* 필요시 배경 지정 */
+    background: #f3f4f6;
     transition: all 0.25s ease;
   }
 
   .title-left {
-    font-size: 1.6em;                   /* 제목 크게 */
-    line-height: 0.7;                   /* 줄 간격 줄이기 */
-    margin-bottom: 0;                   /* 아래 여백 제거 */
+    font-size: 1.6em;
+    line-height: 0.7;
+    margin-bottom: 0;
   }
 
   .subtitle {
@@ -93,8 +93,8 @@
     font-weight: normal;
     color: #bcd0f7;
     opacity: 0.9;
-    margin-top: 2px;                    /* 제목과의 여백 최소화 */
-    display: block;                     /* 줄바꿈 확실히 적용 */
+    margin-top: 2px;
+    display: block;
   }
   
   .date-container {
@@ -104,8 +104,8 @@
 
   .version {
     font-size: 24px;
-    color: #bcd0f7; /* 회색-파랑 톤으로 살짝 강조 */
-    opacity: 0.9;     /* 살짝 연하게 */
+    color: #bcd0f7;
+    opacity: 0.9;
   }
   .date-header {
     font-size: 20px;
@@ -122,7 +122,7 @@
 
   /* ---------- 좌측 패널 ---------- */
   .left-card {
-    width: 200px;
+    width: 220px;
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 12px;
@@ -138,7 +138,7 @@
     align-items: center;
   }
 
-  /* ---------- 문서 버튼 ---------- */
+  /* ---------- 메인 장비 버튼 ---------- */
   .doc-btn {
     width: 100%;
     padding: 10px 8px;
@@ -153,58 +153,140 @@
     display: flex;
     gap: 8px;
     align-items: center;
+    transition: background 0.2s, transform 0.15s;
+    --btn-color: #2563eb;
   }
 
   .doc-btn:hover {
     background: #cbd5e1;
+    transform: translateY(-1px);
   }
 
   .doc-btn.active {
-    background: #2563eb;
+    background: var(--btn-color) !important;
     color: white;
   }
 
   .doc-btn svg {
-    width: 16px;
-    height: 16px;
-    opacity: 0.8;
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    stroke-width: 1.8;
+    fill: none;
+    opacity: 0.9;
+    transition: 0.25s;
   }
 
   .doc-btn.active svg {
-    fill: white;
-    opacity: 1;
+    stroke: #fff;
   }
 
-  label {
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-top: 8px;
-    display: block;
+  /* Hover Glow */
+  .doc-btn:hover svg {
+    filter: drop-shadow(0 0 6px var(--btn-color));
+    transform: scale(1.08);
   }
 
-  input {
-    width: 89%;
-    padding: 10px;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
-    margin-top: 6px;
-    background: #f9fafb;
-  }
-
-  .download-btn {
-    background: #cc0d2f;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    padding: 11px 55px;
-    margin-top: 14px;
-    cursor: pointer;
-    font-weight: 600;
+  /* ---------- 서브메뉴 컨테이너 ---------- */
+  .submenu-container {
+    margin: 2px 0 10px 6px;
+    padding: 8px 8px 9px 8px;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    background: rgba(148,163,184,0.08);
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-4px);
+    transition: all 0.22s ease-out;
     font-size: 0.7rem;
   }
-  .download-btn:hover {
+
+  .submenu-container.open {
+    max-height: 260px;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .submenu-row {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 6px;
+  }
+
+  .submenu-btn {
+    flex: 1;
+    padding: 7px 8px;
+    font-size: 0.7rem;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #e5e7eb;
+    color: #111827;
+    transition: background 0.18s, transform 0.12s, box-shadow 0.12s;
+    white-space: nowrap;
+  }
+
+  .submenu-btn:hover {
+    background: #e0e7ff;
+    transform: translateY(-0.5px);
+    box-shadow: 0 1px 3px rgba(15,23,42,0.18);
+  }
+
+  .submenu-btn-main {
+    flex: 1.4;
+  }
+
+  .submenu-btn-pdf {
+    flex: 0.9;
+    background: #cc0d2f;
+    color: #fff;
+  }
+
+  .submenu-btn-pdf:hover {
     background: #950a23;
+  }
+
+  .submenu-link-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .submenu-link-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .submenu-link-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ↗ 아이콘 배경 원 */
+  .submenu-link-icon-wrap {
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: rgba(15,23,42,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .submenu-link-icon {
+    width: 10px;
+    height: 10px;
+    transition: transform 0.18s ease-out;
+  }
+
+  .submenu-btn:hover .submenu-link-icon {
+    transform: rotate(25deg);
   }
 
   /* ---------- 우측 iframe 카드 ---------- */
@@ -237,6 +319,11 @@
     border-radius: 8px;
     font-size: 0.65rem;
     cursor: pointer;
+  }
+
+  .kb-link-btn:disabled {
+    opacity: 0.4;
+    cursor: default;
   }
 
   .iframe-wrapper {
@@ -274,76 +361,38 @@
     color: #6b7280;
     text-align: center;
   }
-  
-  .doc-btn svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-  stroke-width: 1.8;
-  fill: none;
-  transition: 0.25s;
-}
-
-/* Hover Glow */
-.doc-btn:hover svg {
-  filter: drop-shadow(0 0 6px var(--btn-color));
-  transform: scale(1.1);
-}
-
-/* Active */
-.doc-btn.active {
-  color: white;
-  background: var(--btn-color) !important;
-}
-.doc-btn.active svg {
-  stroke: #fff;
-}
-
-/* 버튼에 색상 적용하기 위해 JS가 style에 넣어줄 변수 */
-.doc-btn {
-  --btn-color: #2563eb;
-}
-
-  
-  
 </style>
 </head>
-
 
 <body>
 
 <div class="header-wrap">
-	<div class="top-nav">
-        <div class="nav-left">
-            <a href="https://etech-symantec.github.io/" class="home-btn">🪟</a>
-        </div>
-    
-        <div class="nav-right">
-            <a href="https://etech-symantec.github.io/broadcom" class="nav-btn">
-	          <img src="https://support.broadcom.com/o/ecx-standard-theme/images/favicon.ico"
-	               style="width:14px;height:14px;margin-right:2px;margin-bottom:3px;vertical-align:middle;">
-	          Broadcom 링크
-	        </a>
-            <a href="https://etech-symantec.github.io/sysinfo" class="nav-btn">🧩 Sysinfo 분석</a>
-            <a href="https://etech-symantec.github.io/isg" class="nav-btn">🔎 ISG 분석</a>
-            <a href="https://etech-symantec.github.io/trace" class="nav-btn">📄 Trace 분석</a>
-            <a href="https://etech-symantec.github.io/sizing-sg" class="nav-btn">📊 Sizing-SG 보기</a>
-            <a href="https://etech-symantec.github.io/elk" class="nav-btn">🧬 ELK 로그 설정</a>
-            <a href="https://etech-symantec.github.io/pac" class="nav-btn-soon">🚦 PAC</a>
-        </div>
+  <div class="top-nav">
+    <div class="nav-left">
+      <a href="https://etech-symantec.github.io/broadcom" class="nav-btn">
+          <img src="https://support.broadcom.com/o/ecx-standard-theme/images/favicon.ico"
+               style="width:14px;height:14px;margin-right:2px;margin-bottom:3px;vertical-align:middle;">
+          Broadcom 링크
+        </a>
+      <a href="https://etech-symantec.github.io/sysinfo" class="nav-btn">🧩 Sysinfo 분석</a>
+      <a href="https://etech-symantec.github.io/isg" class="nav-btn">🔎 ISG 분석</a>
+      <a href="https://etech-symantec.github.io/trace" class="nav-btn">📄 Trace 분석</a>
+      <a href="https://etech-symantec.github.io/sizing-sg" class="nav-btn">📊 Sizing-SG 보기</a>
+      <a href="https://etech-symantec.github.io/elk" class="nav-btn">🧬 ELK 로그 설정</a>
+      <a href="https://etech-symantec.github.io/pac" class="nav-btn-soon">🚦 PAC</a>
     </div>
-		
-	<h1 class="dongle-regular">
-	  <div class="title-left">
-	    EoS 문서 확인<br>
-	    <span class="subtitle">by 이테크시스템</span>
-	  </div>
-	  <div class="date-container">
-	    <div class="version">ver.2025.11.19.01</div><p>
-	  </div>
-	</h1>
+  </div>
+  
+  <h1 class="dongle-regular">
+    <div class="title-left">
+      브로드컴 링크<br>
+      <span class="subtitle">by 이테크시스템</span>
+    </div>
+    <div class="date-container">
+      <div class="version">ver.2025.11.19.01</div><p>
+    </div>
+  </h1>
 </div>
-
 
 <div class="layout">
 
@@ -458,19 +507,89 @@ const iframeMap = {
 
 /* 장비별 컬러 + 링크 매핑 */
 const deviceConfig = {
-  "1984583920084": { // ProxySG / ISG
+  /* ------------------------------------------------------
+      ProxySG / ISG
+     ------------------------------------------------------ */
+  "1984583920084": {
     color: "#2563eb",
-    release:  "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/edge-swg/7-3/what-s-new-in-proxysg-7-3/features-listed-by-release.html",
-    features: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/edge-swg/7-3/what-s-new-in-proxysg-7-3/features-summary-table.html",
-    downloads:"https://support.broadcom.com/group/ecx/productdownloads?subfamily=ISG+Proxy&tab=Products"
+    release:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/edge-swg/7-3/what-s-new-in-proxysg-7-3/features-listed-by-release.html",
+    features:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/edge-swg/7-3/what-s-new-in-proxysg-7-3/features-summary-table.html",
+    downloads:
+      "https://support.broadcom.com/group/ecx/productdownloads?subfamily=ISG+Proxy&tab=Products"
   },
-  "1782202017240": { color: "#10b981" },          // CAS/MA
-  "1761064867057": { color: "#8b5cf6" },          // MC
-  "1762093086557": { color: "#f59e0b" },          // Reporter
-  "1841914259813": { color: "#3b82f6" },          // SSLV HW
-  "1532624862427": { color: "#60a5fa" },          // SSLV SW
-  "897029641901": { color: "#0ea5e9" },           // PacketShaper HW
-  "874655704489": { color: "#38bdf8" }            // PacketShaper SW
+
+  /* ------------------------------------------------------
+      CA / MA
+     ------------------------------------------------------ */
+  "1782202017240": {
+    color: "#10b981",
+    release:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/content-analysis/3-2/rn-cas-3-2-x-intro1.html",
+    features:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/content-analysis/3-2/new_features/rn-cas-new-features-3-2-1-1.html",
+    downloads:
+      "https://support.broadcom.com/group/ecx/productdownloads?subfamily=Content%20Analysis"
+  },
+
+  /* ------------------------------------------------------
+      Management Center
+     ------------------------------------------------------ */
+  "1761064867057": {
+    color: "#8b5cf6",
+    release:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/management-center/4-1/pdf_first.html",
+    features:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/management-center/4-1/4x-release-notes/4x-whats-new.html",
+    downloads:
+      "https://support.broadcom.com/group/ecx/productdownloads?subfamily=Management%20Center"
+  },
+    /* ------------------------------------------------------
+      Reporter
+     ------------------------------------------------------ */
+  "1762093086557": {
+    color: "#f59e0b",
+    release: "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
+    features: "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",  // (예시로 동일)
+    downloads: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=Reporter"
+  },
+    /* ------------------------------------------------------
+      SSLV H/W
+     ------------------------------------------------------ */
+  "1841914259813": {
+    color: "#3b82f6",
+    release: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/4-5/45x-release-notes.html",
+    features: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/5-4/5x-release-notes.html",
+    downloads: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=SSLV"
+  },
+  /* ------------------------------------------------------
+      SSLV S/W
+     ------------------------------------------------------ */
+  "1532624862427": {
+    color: "#60a5fa",
+    release: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/5-5/5x-release-notes.html",
+    features: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/6-1/6x-release-notes.html",
+    downloads: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=SSLV"
+  },
+  /* ------------------------------------------------------
+      PS H/W
+     ------------------------------------------------------ */
+  "897029641901": {
+    color: "#0ea5e9",
+    release: "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
+    features: "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/ReleaseAnnouncements/Packet-Shaper-release-announcement-/21001",
+    downloads: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=PacketShaper"
+  },
+  /* ------------------------------------------------------
+      PS S/W
+     ------------------------------------------------------ */
+  "874655704489": {
+    color: "#38bdf8",
+    release: "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
+    features: "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/ReleaseAnnouncements/Packet-Shaper-release-announcement-/21001",
+    downloads: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=PacketShaper"
+  }
 };
 
 let currentEosId = null;
