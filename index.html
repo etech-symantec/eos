@@ -159,7 +159,7 @@
 
   .doc-btn:hover {
     background: #cbd5e1;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 
   .doc-btn.active {
@@ -244,6 +244,7 @@
     flex: 0.9;
     background: #cc0d2f;
     color: #fff;
+    padding: 7px 8px;
   }
 
   .submenu-btn-pdf:hover {
@@ -288,6 +289,15 @@
   .submenu-btn:hover .submenu-link-icon {
     transform: rotate(25deg);
   }
+  
+  .submenu-pdf-sw {
+      flex: 1;
+      min-width: 30%;     /* 두 개를 한 row에 고정 */
+      max-width: 50%;
+      padding: 6px 6px;   /* 가로 패딩 줄임 */
+      font-size: 0.67rem; /* 글자 크기 감소 */
+  }
+
 
   /* ---------- 우측 iframe 카드 ---------- */
   .right-card {
@@ -377,14 +387,26 @@
   <!-- 좌측 UI -->
   <div class="left-card">
     <h4>📥 장비 선택</h4>
+    
+    <!-- ISG -->
+    <button class="doc-btn" onclick="selectDoc('isg', this)" data-color="#FACC15">
+      <svg viewBox="0 0 24 24">
+        <rect x="3" y="4" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6" fill="none"/>
+        <rect x="6" y="7" width="5" height="4" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="13" y="7" width="5" height="4" rx="1" fill="currentColor" opacity="0.7"/>
+        <rect x="6" y="13" width="12" height="4" rx="1" fill="currentColor" opacity="0.4"/>
+      </svg>
+      ISG
+    </button>
 
-    <!-- ProxySG / ISG -->
+
+    <!-- ProxySG -->
     <button class="doc-btn" onclick="selectDoc('proxysg', this)" data-color="#2563eb">
       <svg viewBox="0 0 24 24">
         <rect x="3" y="5" width="18" height="14" rx="2"></rect>
         <circle cx="8" cy="12" r="2.4"></circle>
       </svg>
-      ProxySG / ISG
+      ProxySG
     </button>
     
     <!-- CAS/MA -->
@@ -455,8 +477,26 @@
 <script>
 /* 장비별 설정 (EoS URL, PDF ID, 링크 등) */
 const deviceConfig = {
+    
   /* ------------------------------------------------------
-      ProxySG / ISG
+      ISG
+     ------------------------------------------------------ */
+  isg: {
+    color: "#FCC61D",
+    eosUrl:
+      "https://knowledge.broadcom.com/external/article/151102/end-of-life-and-product-lifecycle-for-pr.html",
+    eosFileId: "1984583920084",
+    release:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/integrated-secure-gateway/2-5/25-release-notes.html",
+    features:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/integrated-secure-gateway/2-5/25-release-notes/25-whats-new.html",
+    downloads210: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=SSP-S210%20PLATFORM",
+    downloads410: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=SSP-S410%20PLATFORM"
+
+  },
+    
+  /* ------------------------------------------------------
+      ProxySG
      ------------------------------------------------------ */
   proxysg: {
     color: "#2563eb",
@@ -507,7 +547,7 @@ const deviceConfig = {
       Reporter
      ------------------------------------------------------ */
   reporter: {
-    color: "#f59e0b",
+    color: "#BF124D",
     eosUrl:
       "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
     eosFileId: "1762093086557",
@@ -523,7 +563,7 @@ const deviceConfig = {
       SSLV (통합)  – EoS iframe + PDF H/W / S/W 나눔
      ------------------------------------------------------ */
   sslv: {
-    color: "#3b82f6",
+    color: "#016B61",
     eosUrl:
       "https://knowledge.broadcom.com/external/article/233783/end-of-life-and-product-lifecycle-for-ss.html",
     pdfHw: "2048870679775",   // H/W EoL PDF
@@ -539,7 +579,7 @@ const deviceConfig = {
       PacketShaper (통합) – EoS iframe + PDF H/W / S/W 나눔
      ------------------------------------------------------ */
   packetshaper: {
-    color: "#0ea5e9",
+    color: "#F875AA",
     eosUrl:
       "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
     pdfHw: "897029641901",   // H/W EoL PDF
@@ -579,7 +619,7 @@ function selectDoc(deviceId, btnElem) {
   submenu.innerHTML = `
     <div class="submenu-row">
       <button class="submenu-btn submenu-btn-main submenu-eos">
-        <span>⭐ EoS 문서</span>
+        <span>⭐ EoL</span>
       </button>
       <button class="submenu-btn submenu-btn-pdf submenu-pdf">
         <span>PDF</span>
@@ -677,7 +717,58 @@ function selectDoc(deviceId, btnElem) {
   // 링크 버튼 처리
   releaseBtn.addEventListener("click", ()   => openDocLink(deviceId, "release"));
   featuresBtn.addEventListener("click", ()  => openDocLink(deviceId, "features"));
-  downloadsBtn.addEventListener("click", () => openDocLink(deviceId, "downloads"));
+  // ISG의 Downloads 분기 처리
+    if (deviceId === "isg") {
+    
+        const linkRow = submenu.querySelector(".submenu-link-row");
+    
+        // 기존 downloadsBtn을 submenu-link 스타일로 변환
+        downloadsBtn.className = "submenu-btn submenu-link submenu-downloads210";
+        downloadsBtn.innerHTML = `
+            <span class="submenu-link-label">
+              <span class="submenu-link-text">Downloads (S210)</span>
+              <span class="submenu-link-icon-wrap">
+                <svg class="submenu-link-icon" viewBox="0 0 16 16">
+                  <path d="M5 11L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M7 5H11V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+        `;
+    
+        const btn410 = downloadsBtn.cloneNode(true);
+        btn410.className = "submenu-btn submenu-link submenu-downloads410";
+        btn410.innerHTML = `
+            <span class="submenu-link-label">
+              <span class="submenu-link-text">Downloads (S410)</span>
+              <span class="submenu-link-icon-wrap">
+                <svg class="submenu-link-icon" viewBox="0 0 16 16">
+                  <path d="M5 11L11 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  <path d="M7 5H11V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </span>
+        `;
+    
+        // 아래 줄로 이동
+        linkRow.appendChild(downloadsBtn);
+        linkRow.appendChild(btn410);
+    
+        // 링크 연결
+        downloadsBtn.addEventListener("click", () =>
+            openDocLink(deviceId, "downloads210")
+        );
+        btn410.addEventListener("click", () =>
+            openDocLink(deviceId, "downloads410")
+        );
+    
+
+
+    } else {
+        // 기존 로직
+        downloadsBtn.addEventListener("click", () =>
+            openDocLink(deviceId, "downloads"));
+    }
 }
 
 /* HEX + alpha 헬퍼 */
