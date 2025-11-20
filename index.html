@@ -370,10 +370,10 @@
   <div class="top-nav">
     <div class="nav-left">
       <a href="https://etech-symantec.github.io/broadcom" class="nav-btn">
-          <img src="https://support.broadcom.com/o/ecx-standard-theme/images/favicon.ico"
-               style="width:14px;height:14px;margin-right:2px;margin-bottom:3px;vertical-align:middle;">
-          Broadcom 링크
-        </a>
+        <img src="https://support.broadcom.com/o/ecx-standard-theme/images/favicon.ico"
+             style="width:14px;height:14px;margin-right:2px;margin-bottom:3px;vertical-align:middle;">
+        Broadcom 링크
+      </a>
       <a href="https://etech-symantec.github.io/sysinfo" class="nav-btn">🧩 Sysinfo 분석</a>
       <a href="https://etech-symantec.github.io/isg" class="nav-btn">🔎 ISG 분석</a>
       <a href="https://etech-symantec.github.io/trace" class="nav-btn">📄 Trace 분석</a>
@@ -389,7 +389,7 @@
       <span class="subtitle">by 이테크시스템</span>
     </div>
     <div class="date-container">
-      <div class="version">ver.2025.11.19.01</div><p>
+      <div class="version">ver.2025.11.19.02</div><p>
     </div>
   </h1>
 </div>
@@ -400,8 +400,8 @@
   <div class="left-card">
     <h4>📥 장비 선택</h4>
 
-    <!-- ProxySG -->
-    <button class="doc-btn" onclick="selectDoc('1984583920084', this)" data-color="#2563eb">
+    <!-- ProxySG / ISG -->
+    <button class="doc-btn" onclick="selectDoc('proxysg', this)" data-color="#2563eb">
       <svg viewBox="0 0 24 24">
         <rect x="3" y="5" width="18" height="14" rx="2"></rect>
         <circle cx="8" cy="12" r="2.4"></circle>
@@ -410,7 +410,7 @@
     </button>
     
     <!-- CAS/MA -->
-    <button class="doc-btn" onclick="selectDoc('1782202017240', this)" data-color="#10b981">
+    <button class="doc-btn" onclick="selectDoc('casma', this)" data-color="#10b981">
       <svg viewBox="0 0 24 24">
         <path d="M4 4h8l4 4v12H4z"></path>
         <circle cx="14" cy="10" r="2.2"></circle>
@@ -419,7 +419,7 @@
     </button>
     
     <!-- MC -->
-    <button class="doc-btn" onclick="selectDoc('1761064867057', this)" data-color="#8b5cf6">
+    <button class="doc-btn" onclick="selectDoc('mc', this)" data-color="#8b5cf6">
       <svg viewBox="0 0 24 24">
         <circle cx="12" cy="12" r="3"></circle>
         <path d="M12 2v3M12 19v3M4 12h3M17 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>
@@ -428,7 +428,7 @@
     </button>
     
     <!-- Reporter -->
-    <button class="doc-btn" onclick="selectDoc('1762093086557', this)" data-color="#f59e0b">
+    <button class="doc-btn" onclick="selectDoc('reporter', this)" data-color="#f59e0b">
       <svg viewBox="0 0 24 24">
         <rect x="4" y="10" width="3" height="8" rx="1"></rect>
         <rect x="10" y="6" width="3" height="12" rx="1"></rect>
@@ -437,42 +437,24 @@
       Reporter
     </button>
     
-    <!-- SSLV H/W -->
-    <button class="doc-btn" onclick="selectDoc('1841914259813', this)" data-color="#3b82f6">
+    <!-- SSLV (통합) -->
+    <button class="doc-btn" onclick="selectDoc('sslv', this)" data-color="#3b82f6">
       <svg viewBox="0 0 24 24">
         <path d="M6 10V7a6 6 0 1112 0v3"></path>
         <rect x="6" y="10" width="12" height="10" rx="2"></rect>
       </svg>
-      SSLV H/W
+      SSL Visibility
     </button>
     
-    <!-- SSLV S/W -->
-    <button class="doc-btn" onclick="selectDoc('1532624862427', this)" data-color="#60a5fa">
-      <svg viewBox="0 0 24 24">
-        <path d="M12 2a6 6 0 016 6v2"></path>
-        <rect x="6" y="10" width="12" height="10" rx="2"></rect>
-        <path d="M9 14h6"></path>
-      </svg>
-      SSLV S/W
-    </button>
-    
-    <!-- PacketShaper H/W -->
-    <button class="doc-btn" onclick="selectDoc('897029641901', this)" data-color="#0ea5e9">
+    <!-- PacketShaper (통합) -->
+    <button class="doc-btn" onclick="selectDoc('packetshaper', this)" data-color="#0ea5e9">
       <svg viewBox="0 0 24 24">
         <path d="M3 15c3-6 6 6 9 0s6 6 9 0" stroke-width="2" fill="none"></path>
       </svg>
-      PacketShaper H/W
-    </button>
-    
-    <!-- PacketShaper S/W -->
-    <button class="doc-btn" onclick="selectDoc('874655704489', this)" data-color="#38bdf8">
-      <svg viewBox="0 0 24 24">
-        <path d="M3 14c3-4 6 4 9 0s6 4 9 0" stroke-width="2" fill="none"></path>
-      </svg>
-      PacketShaper S/W
+      PacketShaper
     </button>
 
-    <!-- 서브메뉴는 JS에서 동적으로 여기 아래에 삽입됨 -->
+    <!-- 서브메뉴는 JS에서 동적으로 삽입 -->
 
   </div>
 
@@ -484,7 +466,7 @@
     </div>
 
     <div class="iframe-wrapper">
-      <div id="placeholder" class="placeholder">확인할 문서를 선택한 후, <br>EoS 문서를 클릭해 주세요.</div>
+      <div id="placeholder" class="placeholder">확인할 장비를 선택한 후,<br>EoS 문서를 클릭해 주세요.</div>
       <div class="loader" id="loader"></div>
       <iframe id="kbFrame"></iframe>
     </div>
@@ -493,25 +475,16 @@
 </div>
 
 <script>
-/* EoS iframe URL 매핑 */
-const iframeMap = {
-  "1984583920084": "https://knowledge.broadcom.com/external/article/151102/end-of-life-and-product-lifecycle-for-pr.html",
-  "1782202017240": "https://knowledge.broadcom.com/external/article/151099/endoflife-information-for-content-analys.html",
-  "1761064867057": "https://knowledge.broadcom.com/external/article/151106/end-of-life-for-management-center-and-re.html",
-  "1762093086557": "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
-  "1841914259813": "https://knowledge.broadcom.com/external/article/233783/end-of-life-and-product-lifecycle-for-ss.html",
-  "1532624862427": "https://knowledge.broadcom.com/external/article/233783/end-of-life-and-product-lifecycle-for-ss.html",
-  "897029641901": "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
-  "874655704489": "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html"
-};
-
-/* 장비별 컬러 + 링크 매핑 */
+/* 장비별 설정 (EoS URL, PDF ID, 링크 등) */
 const deviceConfig = {
   /* ------------------------------------------------------
       ProxySG / ISG
      ------------------------------------------------------ */
-  "1984583920084": {
+  proxysg: {
     color: "#2563eb",
+    eosUrl:
+      "https://knowledge.broadcom.com/external/article/151102/end-of-life-and-product-lifecycle-for-pr.html",
+    eosFileId: "1984583920084",
     release:
       "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/edge-swg/7-3/what-s-new-in-proxysg-7-3/features-listed-by-release.html",
     features:
@@ -523,8 +496,11 @@ const deviceConfig = {
   /* ------------------------------------------------------
       CA / MA
      ------------------------------------------------------ */
-  "1782202017240": {
+  casma: {
     color: "#10b981",
+    eosUrl:
+      "https://knowledge.broadcom.com/external/article/151099/endoflife-information-for-content-analys.html",
+    eosFileId: "1782202017240",
     release:
       "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/content-analysis/3-2/rn-cas-3-2-x-intro1.html",
     features:
@@ -536,8 +512,11 @@ const deviceConfig = {
   /* ------------------------------------------------------
       Management Center
      ------------------------------------------------------ */
-  "1761064867057": {
+  mc: {
     color: "#8b5cf6",
+    eosUrl:
+      "https://knowledge.broadcom.com/external/article/151106/end-of-life-for-management-center-and-re.html",
+    eosFileId: "1761064867057",
     release:
       "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/management-center/4-1/pdf_first.html",
     features:
@@ -545,65 +524,70 @@ const deviceConfig = {
     downloads:
       "https://support.broadcom.com/group/ecx/productdownloads?subfamily=Management%20Center"
   },
-    /* ------------------------------------------------------
+
+  /* ------------------------------------------------------
       Reporter
      ------------------------------------------------------ */
-  "1762093086557": {
+  reporter: {
     color: "#f59e0b",
-    release: "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
-    features: "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",  // (예시로 동일)
-    downloads: "https://https://support.broadcom.com/group/ecx/productdownloads?subfamily=Reporter-S500"
+    eosUrl:
+      "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
+    eosFileId: "1762093086557",
+    release:
+      "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
+    features:
+      "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
+    downloads:
+      "https://support.broadcom.com/group/ecx/productdownloads?subfamily=Reporter-S500"
   },
-    /* ------------------------------------------------------
-      SSLV H/W
+
+  /* ------------------------------------------------------
+      SSLV (통합)  – EoS iframe + PDF H/W / S/W 나눔
      ------------------------------------------------------ */
-  "1841914259813": {
+  sslv: {
     color: "#3b82f6",
-    release: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/6-1/6x-release-notes.html",
-    features: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/6-1/6x-release-notes/6x-whats-new.html",
-    downloads: ""
+    eosUrl:
+      "https://knowledge.broadcom.com/external/article/233783/end-of-life-and-product-lifecycle-for-ss.html",
+    pdfHw: "1841914259813",   // H/W EoL PDF
+    pdfSw: "1532624862427",   // S/W EoL PDF
+    release:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/6-1/6x-release-notes.html",
+    features:
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/6-1/6x-release-notes/6x-whats-new.html",
+    downloads: ""  // 아직 별도 다운로드 링크 없음 → 버튼 클릭 시 안내
   },
+
   /* ------------------------------------------------------
-      SSLV S/W
+      PacketShaper (통합) – EoS iframe + PDF H/W / S/W 나눔
      ------------------------------------------------------ */
-  "1532624862427": {
-    color: "#60a5fa",
-    release: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/6-1/6x-release-notes.html",
-    features: "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/ssl-visibility/6-1/6x-release-notes/6x-whats-new.html",
-    downloads: ""
-  },
-  /* ------------------------------------------------------
-      PS H/W
-     ------------------------------------------------------ */
-  "897029641901": {
+  packetshaper: {
     color: "#0ea5e9",
-    release: "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
-    features: "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/ReleaseAnnouncements/Packet-Shaper-release-announcement-/21001",
-    downloads: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=PacketShaper%20S-Series"
-  },
-  /* ------------------------------------------------------
-      PS S/W
-     ------------------------------------------------------ */
-  "874655704489": {
-    color: "#38bdf8",
-    release: "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
-    features: "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/ReleaseAnnouncements/Packet-Shaper-release-announcement-/21001",
-    downloads: "https://support.broadcom.com/group/ecx/productdownloads?subfamily=PacketShaper%20S-Series"
+    eosUrl:
+      "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
+    pdfHw: "897029641901",   // H/W EoL PDF
+    pdfSw: "874655704489",   // S/W EoL PDF
+    release:
+      "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
+    features:
+      "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/ReleaseAnnouncements/Packet-Shaper-release-announcement-/21001",
+    downloads:
+      "https://support.broadcom.com/group/ecx/productdownloads?subfamily=PacketShaper%20S-Series"
   }
 };
 
-let currentEosId = null;
+let currentDeviceId = null;
 
 /* 장비 버튼 클릭 */
-function selectDoc(id, btnElem) {
+function selectDoc(deviceId, btnElem) {
   // 기존 active 제거
   document.querySelectorAll(".doc-btn").forEach(b => {
     b.classList.remove("active");
   });
 
-  // 선택 버튼 active + 색상 반영
-  const cfg = deviceConfig[id] || {};
+  const cfg = deviceConfig[deviceId] || {};
   const color = cfg.color || btnElem.getAttribute("data-color") || "#2563eb";
+
+  // 선택 버튼 active + 색상 반영
   btnElem.classList.add("active");
   btnElem.style.setProperty("--btn-color", color);
 
@@ -614,7 +598,6 @@ function selectDoc(id, btnElem) {
   const submenu = document.createElement("div");
   submenu.className = "submenu-container";
 
-  // ProxySG / 나머지 공통 서브메뉴
   submenu.innerHTML = `
     <div class="submenu-row">
       <button class="submenu-btn submenu-btn-main submenu-eos">
@@ -661,7 +644,7 @@ function selectDoc(id, btnElem) {
     </div>
   `;
 
-  // 색상/스타일 보정
+  // 스타일 보정
   submenu.style.borderColor = color;
   submenu.style.boxShadow = `0 0 0 1px ${hexWithAlpha(color, 0.20)}`;
 
@@ -669,10 +652,11 @@ function selectDoc(id, btnElem) {
   eosBtn.style.backgroundColor = color;
   eosBtn.style.color = "#fff";
 
-  // ProxySG 외에는 Release/Features/Downloads가 아직 없을 수 있으니 안내
+  const pdfBtn       = submenu.querySelector(".submenu-pdf");
   const releaseBtn   = submenu.querySelector(".submenu-release");
   const featuresBtn  = submenu.querySelector(".submenu-features");
   const downloadsBtn = submenu.querySelector(".submenu-downloads");
+  const row          = submenu.querySelector(".submenu-row");
 
   // 장비 버튼 바로 아래에 삽입
   btnElem.insertAdjacentElement("afterend", submenu);
@@ -680,21 +664,42 @@ function selectDoc(id, btnElem) {
   // 슬라이드 애니메이션
   requestAnimationFrame(() => submenu.classList.add("open"));
 
-  // EoS 문서 버튼 → iframe 로딩
+  // EoS 문서 → iframe 로딩
   eosBtn.addEventListener("click", () => {
-    loadDoc(id);
+    loadDoc(deviceId);
   });
 
-  // PDF 다운로드
-  const pdfBtn = submenu.querySelector(".submenu-pdf");
-  pdfBtn.addEventListener("click", () => {
-    downloadAttachment(id);
-  });
+  // PDF 버튼 설정
+  if (cfg.pdfHw && cfg.pdfSw) {
+    // SSLV / PacketShaper : H/W, S/W 두 개로 분리
+    pdfBtn.textContent = "PDF H/W";
+    const pdfBtnSw = pdfBtn.cloneNode(true);
+    pdfBtnSw.textContent = "PDF S/W";
+    pdfBtnSw.classList.add("submenu-pdf-sw");
+    row.appendChild(pdfBtnSw);
+
+    pdfBtn.addEventListener("click", () => {
+      downloadAttachment(cfg.pdfHw);
+    });
+    pdfBtnSw.addEventListener("click", () => {
+      downloadAttachment(cfg.pdfSw);
+    });
+  } else {
+    // 나머지 장비 : 기본 EoS PDF 하나
+    pdfBtn.textContent = "PDF";
+    pdfBtn.addEventListener("click", () => {
+      if (!cfg.eosFileId) {
+        alert("이 장비의 EoS PDF ID가 설정되지 않았습니다.");
+        return;
+      }
+      downloadAttachment(cfg.eosFileId);
+    });
+  }
 
   // 링크 버튼 처리
-  releaseBtn.addEventListener("click", () => openDocLink(id, "release"));
-  featuresBtn.addEventListener("click", () => openDocLink(id, "features"));
-  downloadsBtn.addEventListener("click", () => openDocLink(id, "downloads"));
+  releaseBtn.addEventListener("click", ()   => openDocLink(deviceId, "release"));
+  featuresBtn.addEventListener("click", ()  => openDocLink(deviceId, "features"));
+  downloadsBtn.addEventListener("click", () => openDocLink(deviceId, "downloads"));
 }
 
 /* HEX + alpha 헬퍼 */
@@ -708,15 +713,16 @@ function hexWithAlpha(hex, alpha) {
 }
 
 /* iframe 로딩 */
-function loadDoc(id) {
+function loadDoc(deviceId) {
   const iframe = document.getElementById("kbFrame");
   const loader = document.getElementById("loader");
   const placeholder = document.getElementById("placeholder");
   const linkBtn = document.getElementById("kbLinkBtn");
 
-  currentEosId = id;
+  const cfg = deviceConfig[deviceId] || {};
+  currentDeviceId = deviceId;
 
-  if (!id || !iframeMap[id]) {
+  if (!cfg.eosUrl) {
     iframe.style.display = "none";
     loader.style.display = "none";
     placeholder.style.display = "block";
@@ -729,7 +735,7 @@ function loadDoc(id) {
   iframe.style.display = "none";
   linkBtn.disabled = false;
 
-  iframe.src = iframeMap[id];
+  iframe.src = cfg.eosUrl;
 }
 
 /* iframe 로드 완료 */
@@ -740,13 +746,15 @@ document.getElementById("kbFrame").addEventListener("load", () => {
 
 /* 원본 KB 페이지 새창 */
 function openKB() {
-  if (!currentEosId || !iframeMap[currentEosId]) return;
-  window.open(iframeMap[currentEosId], "_blank");
+  if (!currentDeviceId) return;
+  const cfg = deviceConfig[currentDeviceId] || {};
+  if (!cfg.eosUrl) return;
+  window.open(cfg.eosUrl, "_blank");
 }
 
 /* Release / Features / Downloads 새창 */
-function openDocLink(id, type) {
-  const cfg = deviceConfig[id] || {};
+function openDocLink(deviceId, type) {
+  const cfg = deviceConfig[deviceId] || {};
   const url = cfg[type];
 
   if (!url) {
