@@ -534,9 +534,9 @@ const deviceConfig = {
       "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
     eosFileId: "1762093086557",
     release:
-      "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/reporter/11-0/RNFirstPage.html",
     features:
-      "https://knowledge.broadcom.com/external/article/386552/end-of-life-for-reporter.html",
+      "https://techdocs.broadcom.com/us/en/symantec-security-software/web-and-network-security/reporter/11-0/about-reporter-11.html",
     downloads:
       "https://support.broadcom.com/group/ecx/productdownloads?subfamily=Reporter-S500"
   },
@@ -567,9 +567,9 @@ const deviceConfig = {
     pdfHw: "897029641901",   // H/W EoL PDF
     pdfSw: "874655704489",   // S/W EoL PDF
     release:
-      "https://knowledge.broadcom.com/external/article/151110/packetshaper-endoflife-documents.html",
+      "",
     features:
-      "https://support.broadcom.com/web/ecx/support-content-notification/-/external/content/ReleaseAnnouncements/Packet-Shaper-release-announcement-/21001",
+      "",
     downloads:
       "https://support.broadcom.com/group/ecx/productdownloads?subfamily=PacketShaper%20S-Series"
   }
@@ -758,7 +758,7 @@ function openDocLink(deviceId, type) {
   const url = cfg[type];
 
   if (!url) {
-    alert("해당 장비의 " + type + " 링크는 아직 지정되지 않았습니다.");
+    alert("해당 장비의 " + type + " 링크를 확인할 수 없습니다.");
     return;
   }
   window.open(url, "_blank");
